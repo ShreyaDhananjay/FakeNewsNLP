@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <style>
+        textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 8px;
+    box-sizing: border-box;
+    border: 1px solid powderblue;
+    border-radius: 4px;
+    text-align: left;
+  }
+  textarea:focus {
+    border: 3px solid royalblue;
+  }
+    </style>
+    <title>Fake News Detector</title>
+</head>
+<body>
+    <br><br><br><br>
+    <center>
+        <div class="content-section" style="width:75%">
+            <br><br>
+            <h2 style="color:royalblue">Fake News Detector</h2><br>
+            <h4>Enter the headline and text of a news article to check if it is real or fake</h4>
+            <br><br>
+            {% if result == "REAL" %}
+            <h3>Result: The news is <span style="color:green">{{result}}</span></h3><br>
+            {% elif result == "FAKE" %}
+            <h3>Result: The news is <span style="color:red">{{result}}</span></h3><br>
+            {% endif %}
+            <form method="POST" action="http://localhost:5000/home">
+                <table>
+                <tr>
+                    <th style="text-align:left"><label for="title">Headline</label></th>
+                    <td><input type="text" name="title" style="text-align:left"></td></tr>    
+                <tr>
+                    <th style="text-align:left"><label for="text1">Text of the Article</label></th>
+                    <td><textarea name="text1" style="width:400px; height:150px"></textarea></td>
+                </tr>
+                </table>
+                <br>
+                <input type="submit" value="Check" name="s1" class="button" style="width:50%">
+            </form>
+            <br><br>
+        </div>
+    </center>
+</body>
+</html>
