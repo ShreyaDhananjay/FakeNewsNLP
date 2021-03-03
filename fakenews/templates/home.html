@@ -34,14 +34,38 @@
             {% elif result == "FAKE" %}
             <h3>Result: The news is <span style="color:red">{{result}}</span></h3><br>
             {% endif %}
+            <p>Note:</p>
+            <p>1. Bag of Words is slightly more accurate (88%) </p>
+            <p>than TF-IDF (86%) when applied to text</p><br>
+            <p>2. Both methods are more accurate for text</p><br>
             <form method="POST" action="http://localhost:5000/home">
                 <table>
                 <tr>
                     <th style="text-align:left"><label for="title">Headline</label></th>
-                    <td><input type="text" name="title" style="text-align:left"></td></tr>    
+                    <td><input type="text" name="title" style="text-align:left" required></td></tr>    
                 <tr>
                     <th style="text-align:left"><label for="text1">Text of the Article</label></th>
-                    <td><textarea name="text1" style="width:400px; height:150px"></textarea></td>
+                    <td><textarea name="text1" style="width:400px; height:150px" required></textarea></td>
+                </tr>
+                <tr>
+                    <th>NLP method</th>
+                    <td>
+                    <input list='methods' name='method' required>
+                    <datalist id='methods'>
+                        <option value='TFIDF'></option>
+                        <option value='Bag of Words'></option>
+                    </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Classify on?</th>
+                    <td>
+                        <input list='on' name='cl_on' required>
+                        <datalist id='on'>
+                            <option value="Title"></option>
+                            <option value="Text"></option>
+                        </datalist>
+                    </td>
                 </tr>
                 </table>
                 <br>

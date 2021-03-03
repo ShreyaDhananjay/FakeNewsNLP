@@ -12,14 +12,17 @@ def home():
         result = request.form
         l1 = []
         user_ex = []
+        choice = {}
         for key, value in result.items():
             if key != 's1':
                 l1.append(value)
+            if key == 'method' or key == 'cl_on':
+                choice[key] = value
         user_ex.append(l1)
         user_ex = pd.DataFrame(user_ex)
         user_ex.rename(columns={0: 'title', 1: 'text'}, inplace=True)
         user_ex = preprocess(user_ex)
-        user_ex.to_csv("fakenews/example4.csv")
-        result = predict(user_ex)
+        #user_ex.to_csv("fakenews/example4.csv")
+        result = predict(user_ex, choice)
     return render_template('home.html', result=result)
     
